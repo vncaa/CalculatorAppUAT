@@ -1,0 +1,47 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model CalculatorAppUAT.Models.Calculator
+
+@{
+    ViewData["Title"] = "Calculator";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewData["Title"]</title>
+</head>
+<body>
+    <h1>@ViewData["Title"]</h1>
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Index">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="FirstNumber" class="control-label"></label>
+                    <br />
+                    <input asp-for="FirstNumber" class="form-control" />
+                    <span asp-validation-for="FirstNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SecondNumber" class="control-label"></label>
+                    <br />
+                    <input asp-for="SecondNumber" class="form-control" />
+                    <span asp-validation-for="SecondNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Operation" class="control-label"></label>
+                    <br />
+                    @Html.DropDownListFor(model => model.Operation, new SelectList(Model.PossibleOperations, "Value", "Text"))
+                    <span asp-validation-for="Operation" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input id="Submit" type="submit" value="Count" class="btn btn-default" />
+                </div>
+
+                <p id="Result" style="font-size: 2em;">@Model.Result</p>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
